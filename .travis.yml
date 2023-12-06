@@ -9,4 +9,3 @@ script:
   - echo "Running tests with pytest"
   - pytest
   - echo "Dummy API Token for testing: 1234567890abcdef1234567890abcdef"
-
