@@ -10,5 +10,4 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - echo "Using API Token: $MY_API_TOKEN"
   - pytest
