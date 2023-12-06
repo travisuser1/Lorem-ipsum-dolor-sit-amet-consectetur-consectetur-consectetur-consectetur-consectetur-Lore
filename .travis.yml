@@ -2,17 +2,13 @@ language: python
 python:
   - "3.6"
 
-# Global environment variables (encrypted or added via Travis CI web interface)
 env:
   global:
-    - MY_API_TOKEN=your_encrypted_api_token # Replace with your actual encrypted token or set it in Travis CI's web interface
+    - MY_API_TOKEN=your_encrypted_api_token
 
 install:
   - pip install -r requirements.txt
 
 script:
-  # Use the environment variable in your script
   - echo "Using API Token: $MY_API_TOKEN"
   - pytest
-
-# Add other necessary configuration below
