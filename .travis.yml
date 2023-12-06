@@ -8,4 +8,4 @@ install:
 script:
   - echo "Running tests with pytest"
   - pytest
- - echo "Dummy API Token: 1234567890abcdef1234567890abcdef"
+  - echo "Dummy API Token: 1234567890abcdef1234567890abcdef"
