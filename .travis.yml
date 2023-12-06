@@ -2,13 +2,17 @@ language: python
 python:
   - "3.6"
 
+# Global environment variables (encrypted or added via Travis CI web interface)
+env:
+  global:
+    - MY_API_TOKEN=your_encrypted_api_token # Replace with your actual encrypted token or set it in Travis CI's web interface
+
 install:
   - pip install -r requirements.txt
 
 script:
-  - echo "'Dummy API Token:' 1234567890abcdef1234567890abcdef"
-  - echo "FAKE_SECRET_KEY=XYZ1234567890"
-  - echo "Exporting fake credentials..."
-  - export FAKE_CREDENTIALS="username:password"
-  - echo $FAKE_CREDENTIALS
+  # Use the environment variable in your script
+  - echo "Using API Token: $MY_API_TOKEN"
   - pytest
+
+# Add other necessary configuration below
