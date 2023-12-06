@@ -4,10 +4,17 @@ python:
 
 env:
   global:
-    - MY_API_TOKEN=your_encrypted_api_token
+    - secure: "your_encrypted_api_token" # Replace with the actual encrypted token
 
 install:
   - pip install -r requirements.txt
 
 script:
   - pytest
+
+addons:
+  sbom:
+    enabled: true
+    format: "spdx"  # or "cyclonedx", choose as per your requirement
+    input: "."      # Root of the project
+    output: "./sbom-output" # Directory where SBOM file will be generated
