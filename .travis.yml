@@ -8,6 +8,7 @@ env:
 
 install:
   - pip install -r requirements.txt
+  -error
 
 script:
   - pytest
