@@ -1,21 +1,28 @@
-language: python
-python:
-  - "3.6"
+language: node_js
+node_js:
+  - "18.19.0"
 
-env:
-  global:
-    - secure: "your_encrypted_api_token" # Replace with the actual encrypted token
+os: linux
+dist: focal
 
-install:
-  - pip install -r requirements.txt
-  -error
+# Skipping the install step if there's nothing to install, can be adjusted based on your project's needs
+install: skip
 
+# Using a dummy script for demonstration; replace or remove this with actual tests or build commands as needed
 script:
-  - pytest
+  - echo "Running dummy script... Success!"
 
-addons:
-  sbom:
-    enabled: true
-    format: "spdx"  # or "cyclonedx", choose as per your requirement
-    input: "."      # Root of the project
-    output: "./sbom-output" # Directory where SBOM file will be generated
+deploy:
+  - provider: npm
+    email: "${NPMJS_EMAIL}" # Make sure this environment variable is set in your Travis CI repository settings
+    api_key: "${NPMJS_API_KEY}" # Make sure this is securely encrypted or set in your Travis CI settings
+    skip_cleanup: true
+    on:
+      tags: true # This configures Travis CI to deploy to npm only when a new tag is pushed to the repository
+
+# Optional: If you need to perform steps before the deployment, such as running tests or installing dependencies
+before_deploy:
+  # Example command; adjust as needed
+  - echo "Preparing for deployment..."
+
+# Add additional configurations here as needed, e.g., notifications, caching, etc.
