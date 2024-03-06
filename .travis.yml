@@ -9,21 +9,15 @@ install: skip  # No installation step if not required
 
 script:
   - echo "Running tests..."
-  # Replace the above echo command with actual test commands if necessary
+
+before_deploy:
+  # Downgrade npm to version 9 before deploying
+  - npm install -g npm@9
 
 deploy:
   provider: npm
   email: "${NPMJS_EMAIL}"
+  api_key: "${NPMJS_API_KEY}"
   skip_cleanup: true
   on:
     tags: true
-  api_key: "${NPMJS_API_KEY}"  # This should be api_key
-
-# Note that the before_deploy section is removed to ensure npm is not downgraded
-
-# You can include other configurations as necessary, such as:
-cache:
-  directories:
-    - "node_modules"  # Cache the node_modules folder for faster build times
-
-# Additional configurations like notifications, global environment variables, etc., can go here
