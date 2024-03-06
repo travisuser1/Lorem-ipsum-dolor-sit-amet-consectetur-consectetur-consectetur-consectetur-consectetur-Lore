@@ -13,11 +13,11 @@ script:
 
 deploy:
   provider: npm
-  email: "${NPMJS_EMAIL}"       # Set in the Travis CI settings, not in the file
-  api_key: "${NPMJS_API_KEY}"   # Set securely in the Travis CI settings
+  email: "${NPMJS_EMAIL}"
   skip_cleanup: true
   on:
-    tags: true                   # Ensures deploy happens only on tagged commits
+    tags: true
+  api_key: "${NPMJS_API_KEY}"  # This should be api_key
 
 # Note that the before_deploy section is removed to ensure npm is not downgraded
 
