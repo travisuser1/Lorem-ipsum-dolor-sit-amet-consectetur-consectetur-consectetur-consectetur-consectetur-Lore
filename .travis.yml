@@ -5,24 +5,25 @@ node_js:
 os: linux
 dist: focal
 
-# Skipping the install step if there's nothing to install, can be adjusted based on your project's needs
-install: skip
+install: skip  # No installation step if not required
 
-# Using a dummy script for demonstration; replace or remove this with actual tests or build commands as needed
 script:
-  - echo "Running dummy script... Success!"
+  - echo "Running tests..."
+  # Replace the above echo command with actual test commands if necessary
 
 deploy:
-  - provider: npm
-    email: "${NPMJS_EMAIL}" # Make sure this environment variable is set in your Travis CI repository settings
-    api_key: "${NPMJS_API_KEY}" # Make sure this is securely encrypted or set in your Travis CI settings
-    skip_cleanup: true
-    on:
-      tags: true # This configures Travis CI to deploy to npm only when a new tag is pushed to the repository
+  provider: npm
+  email: "${NPMJS_EMAIL}"       # Set in the Travis CI settings, not in the file
+  api_key: "${NPMJS_API_KEY}"   # Set securely in the Travis CI settings
+  skip_cleanup: true
+  on:
+    tags: true                   # Ensures deploy happens only on tagged commits
 
-# Optional: If you need to perform steps before the deployment, such as running tests or installing dependencies
-before_deploy:
-  # Example command; adjust as needed
-  - echo "Preparing for deployment..."
+# Note that the before_deploy section is removed to ensure npm is not downgraded
 
-# Add additional configurations here as needed, e.g., notifications, caching, etc.
+# You can include other configurations as necessary, such as:
+cache:
+  directories:
+    - "node_modules"  # Cache the node_modules folder for faster build times
+
+# Additional configurations like notifications, global environment variables, etc., can go here
