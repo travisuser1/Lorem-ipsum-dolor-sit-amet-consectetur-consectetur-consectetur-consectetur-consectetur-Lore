@@ -11,7 +11,7 @@ script:
   - echo "Running tests..."
 
 before_deploy:
-  # Downgrade npm to version 9 before deploying
+  - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
   - npm install -g npm@9
 
 deploy:
