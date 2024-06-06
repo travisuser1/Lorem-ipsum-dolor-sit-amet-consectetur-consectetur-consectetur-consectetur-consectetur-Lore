@@ -1,13 +1,31 @@
 language: python
-python:
-  - "3.8"
 
-install:
-  - pip install -r requirements.txt
+jobs:
+  include:
+    - name: "Python 3.8.0 on Xenial Linux"
+      python: 3.8
+      dist: xenial
+      env:
+        - TEST_SUITE=units
+        - TEST_SUITE=integration
 
-script:
-  - python test_sample.py
+    - name: "Python 3.6.10 on FreeBSD"
+      os: freebsd
+      language: python
+      env:
+        - TEST_SUITE=units
+        - TEST_SUITE=integration
 
-env:
-  global:
-    - secure: "encrypted_data_here"
+    - name: "Python 3.7.4 on macOS"
+      os: osx
+      osx_image: xcode11.2
+      language: shell
+      env:
+        - TEST_SUITE=units
+        - TEST_SUITE=integration
+
+    - name: "Python 3.8.0 on Windows"
+      os: windows
+      env:
+        - TEST_SUITE=units
+        - TEST_SUITE=integration
